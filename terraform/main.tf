@@ -38,7 +38,7 @@ resource "random_id" "random" {
 # instances
 #
 
-resource "aws_instance" "lw-reesy" {
+resource "aws_instance" "lw-instance" {
   count                  = var.node_counter
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = var.linux_node_instance_type
@@ -55,7 +55,7 @@ resource "aws_instance" "lw-reesy" {
   }
 
   tags = {
-    Name          = "lw-reesy-ec2-${count.index}"
+    Name          = "${var.tag_name}-ec2-${count.index}"
     X-Dept        = var.tag_dept
     X-Customer    = var.tag_customer
     X-Project     = var.tag_project
